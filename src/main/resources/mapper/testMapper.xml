@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.message.dao.TestMapper">
+  <resultMap id="BaseResultMap" type="com.example.message.entitys.bean.Test">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.message.entitys.bean.Test">
+    insert into test (id, name)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+  </insert>
+
+  <select id="testSelect" resultMap="BaseResultMap" parameterType="map" >
+    select * from test
+  </select>
+</mapper>
