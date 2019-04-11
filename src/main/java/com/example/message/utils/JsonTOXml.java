@@ -48,7 +48,7 @@ public class JsonTOXml {
         return mapTypes ;
     }
     // 构建xml主体结构
-    private static void addElementToRoot(Map mapTypes, Element taxML) {
+    public static void addElementToRoot(Map mapTypes, Element taxML) {
         if(mapTypes!=null&&mapTypes.size()>0){
             //map不为空的情况下
             for(Object key :mapTypes.keySet()){
