@@ -10,8 +10,8 @@ public class ForSBVOUtil2 {
     private static File file = null;
 
     public static void main(String[] args) throws IOException {
-        String pathName_in ="C:\\Users\\Lenovo\\Desktop\\方欣\\开放平台税务报表接口对接资料\\文化事业建设费报表结构体.txt";
-        String pathName_out ="D:\\文化事业建设费报表结构体.txt";
+        String pathName_in ="C:\\Users\\Lenovo\\Desktop\\A.txt";
+        String pathName_out ="C:\\Users\\Lenovo\\Desktop\\AB.txt";
         file = new File(pathName_in);
         BufferedWriter bufw=new BufferedWriter(new FileWriter(pathName_out));
         fileInputStream = new FileInputStream(file);
@@ -24,9 +24,9 @@ public class ForSBVOUtil2 {
             System.out.println("=="+lineTxt);
             if("".equals(lineTxt)){
                 bufw.write("\n");
-            }else if(lineTxt.contains("-")){
+            }else if(lineTxt.contains("--")){
                 bufw.write("\n");
-                lineTxt = lineTxt.substring(0,lineTxt.indexOf("-"));
+                lineTxt = "";
                 bufw.write(lineTxt);
             }else{
                 bufw.write(lineTxt);

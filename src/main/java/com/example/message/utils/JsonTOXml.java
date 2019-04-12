@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 构建目标xml主体架构
  * @author cg
  * @create 2019-04-11 10:30
  */
@@ -30,13 +31,12 @@ public class JsonTOXml {
         taxML.addNamespace("xsi","http://www.w3.org/2001/XMLSchema-instance");
         taxML.addAttribute("xsi:schemaLocation","http://www.chinatax.gov.cn/dataspec/ C:\\Users\\Lenovo\\Desktop\\申报\\湖南\\增值税一般纳税人申报表XSD定义\\10104_001.xsd");
         taxML.addAttribute("cnName","增值税一般纳税人申报");
-        taxML.addAttribute("name","sbbZzsybnsrsb");
+        taxML.addAttribute("name","sbbXgmzzssbb");
         taxML.addAttribute("version","V1.0");
         return taxML;
     }
 
     public  static Element createSbNameElement(Element taxML){
-        //Element taxML = document.addElement("taxML", "http://www.chinatax.gov.cn/dataspec/");
         String name =  taxML.attributeValue("name");
         Element first = taxML.addElement(name);
         return first;
@@ -48,7 +48,7 @@ public class JsonTOXml {
         return mapTypes ;
     }
     // 构建xml主体结构
-    public static void addElementToRoot(Map mapTypes, Element taxML) {
+    private static void addElementToRoot(Map mapTypes, Element taxML) {
         if(mapTypes!=null&&mapTypes.size()>0){
             //map不为空的情况下
             for(Object key :mapTypes.keySet()){
@@ -71,6 +71,20 @@ public class JsonTOXml {
         }
     }
 
+    //不打印list，只打印list根目录
+    public static void addElementToRoot2(Map mapTypes, Element taxML) {
+        if(mapTypes!=null&&mapTypes.size()>0){
+            for(Object key :mapTypes.keySet()){
+                String elemnetName = key.toString() ;
+                Object object = mapTypes.get(key);
+                Element elemnet =  taxML.addElement(elemnetName);
+                if(object instanceof Map){
+                    addElementToRoot2((Map)object,elemnet);
+                }
+            }
+        }
+    }
+
 
     public static Document createXml(){
         Document document = createDocument();
@@ -83,7 +97,7 @@ public class JsonTOXml {
     public static void main(String[] args) {
         Document document = createDocument();
         LinkedHashMap  mapTypes = jsonToMap(xmlJson);
-        addElementToRoot(mapTypes,createSbNameElement(createRootElement(document)));
+        addElementToRoot2(mapTypes,createSbNameElement(createRootElement(document)));
         log.info("==>"+document.asXML());
     }
 }
