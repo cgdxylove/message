@@ -25,6 +25,7 @@
 		8, 整合logback日志框架（boot-web自带）
 		9，SpringBoot AOP统一异常处理
 		10，Spring Cloud
+		11.整合 swagger2
 		-->
 	</description>
 
@@ -35,6 +36,7 @@
 		<mybatis.version>1.3.1</mybatis.version>
 		<activemq.version>5.15.7</activemq.version>
 		<log4j.version>1.3.8.RELEASE</log4j.version>
+		<swagger2.version>2.7.0</swagger2.version>
 	</properties>
 
 	<profiles>
@@ -133,6 +135,18 @@
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.56</version>
+		</dependency>
 
 		<!--短信jar包，需要下载本地导入  -->
 		<dependency>
@@ -150,6 +164,19 @@
 			<artifactId>logging</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+
+		<!-- swagger2 -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger2.version}</version>
+		</dependency>
+
 
 		<!-- activeMq依赖包 -->
 		<!-- activeMq依赖包，去掉activemq-all自带的log4j，用Springboot自带的log4j包 -->
